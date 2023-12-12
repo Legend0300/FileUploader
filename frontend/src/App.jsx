@@ -13,15 +13,7 @@ import FileApp from './FileApp'
 
 // layouts
 import Nav from './layouts/Nav'
-
-
-const Login = () => {
-  return (
-    <div>
-      <h1>Login</h1>
-    </div>
-  )
-}
+import Login from './Login'
 
 
 
