@@ -13,7 +13,7 @@ const Login = () => {
     // You can add logic for handling login here
     setCredentials({ username: '', password: '', role: '' });
     //redirect to home page
-    window.open("/");
+    window.open("/" , "_self");
   };
 
   return (
@@ -21,7 +21,7 @@ const Login = () => {
       <h1 className="text-3xl font-bold mb-4 text-white">Login</h1>
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2 text-white">Username</label>
+          <label htmlFor="username" className="block text-gray-200 text-sm font-bold mb-2 text-white">Username</label>
           <input
             type="text"
             id="username"
