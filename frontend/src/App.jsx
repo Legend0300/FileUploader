@@ -1,46 +1,54 @@
-// App.js
-import React, { useEffect, useState } from 'react';
-import FileUpload from './FileUpload';
-import FileDisplay from './FileDisplay';
-import FileList from './FileList';
-import axios from 'axios';
+import {
+  createBrowserRouter, 
+  createRoutesFromElements,
+  Route, 
+  RouterProvider
+} from 'react-router-dom'
 
-const App = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [fileLink, setFileLink] = useState(null);
-  const [Filename, setFilename] = useState(null);
-  useEffect(() => {
-    if (selectedFile) {
-      handleFileSelect(selectedFile);
-    }
-  }
-  , [selectedFile]);
+import NotFound from './NotFound'
+import VoucherTable from './Voucher'
+import Transactions from './Transactions'
+import HomeDashboard from './HomeDashboard'
+import FileApp from './FileApp'
 
-  const handleFileSelect = async (filename) => {
-    try {
-      const response = await axios.get(`http://localhost:3000/files/${filename}`);
-      setFilename(filename);
-      filename = filename.replace(/ /g, '%20');
-      setFileLink(`http://localhost:3000/files/${filename}`);
-    } catch (error) {
-      console.error('Error getting file link:', error);
-    }
+// layouts
+import Nav from './layouts/Nav'
 
-    setSelectedFile(filename);
-  };
 
-  const handleFileUpload = () => {
-    // Refresh file list after upload
-    setFileLink(null);
-  };
-
+const Login = () => {
   return (
     <div>
-      <FileUpload onUpload={handleFileUpload} />
-      <FileList onSelect={handleFileSelect} />
-      <FileDisplay fileLink={fileLink} filename={Filename} />
+      <h1>Login</h1>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+    <Route path="/login" element={<Login />}/>
+    <Route path="/" element={<Nav />}>
+      <Route  index element={<HomeDashboard />} />
+      <Route path="vouchers" element={<VoucherTable />} />
+      <Route path="transactions" element={<Transactions />} />
+      {/* <Route index element={<Home />} />
+    <Route path="about" element={<About />} />
+    <Route path="help" element={<HelpLayout />}>
+      <Route path="faq" element={<Faq />} />
+      <Route path="contact" element={<Contact/>} action={contactAction} />
+    </Route> */}
+    </Route><Route path="*" element={<NotFound />} />
+    <Route path='file-uploader' element={<FileApp />} />
+    </>
+  )
+)
+
+function App() {
+  return (
+    <RouterProvider router={router} />
+  );
+}
+
+export default App

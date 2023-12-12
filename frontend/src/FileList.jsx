@@ -1,4 +1,3 @@
-// FileList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -20,11 +19,15 @@ const FileList = ({ onSelect }) => {
   }, []);
 
   return (
-    <div>
-      <h2>File List</h2>
-      <ul>
+    <div className="bg-black-100 border border-gray-300 p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4">File List</h2>
+      <ul className="list-disc ml-4">
         {files.map((file) => (
-          <li key={file.name} onClick={() => onSelect(file.name)}>
+          <li
+            key={file.name}
+            className="text-blue-500 cursor-pointer hover:underline transition-colors"
+            onClick={() => onSelect(file.name)}
+          >
             {file.name}
           </li>
         ))}
