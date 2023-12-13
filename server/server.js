@@ -85,6 +85,125 @@ app.post('/upload', (req, res) => {
   });
 });
 
+
+app.get("/testdata", (req, res) => {
+  const data = {
+    users: [
+      {
+        "username": "jonathan",
+        "email": "jojo1@example.com",
+        "password": "hamon",
+        "phone": "1234567890",
+        "status": "inactive",
+        "userType": "Admin",
+        "id": 1
+      },
+      {
+        "username": "joeseph",
+        "email": "jojo2@example.com",
+        "password": "hermitspurple",
+        "phone": "0987654321",
+        "status": "active",
+        "userType": "ZoneManager",
+        "id": 2
+      },
+      {
+        "username": "jotaro",
+        "email": "jojo3@gmail.com",
+        "password": "starplatinum",
+        "phone": "000000000",
+        "status": "active",
+        "userType": "SuperAdmin",
+        "id": 3
+      },
+      // ... (other user objects)
+    ],
+    cities: [
+      {
+        "name": "Lahoreowo",
+        "district": "Lahore",
+        "province": "Punjab",
+        "prefix": "LHE",
+        "id": 4
+      },
+      {
+        "name": "Karachiopolis",
+        "district": "Karachi",
+        "province": "Sindh",
+        "prefix": "KHI",
+        "id": 5
+      },
+      {
+        "name": "Islamabadington",
+        "district": "Islamabad",
+        "province": "Capital",
+        "prefix": "ISB",
+        "id": 6
+      },
+      // ... (other city objects)
+    ],
+    zones: [
+      {
+        "name": "Lahore Zone 1",
+        "active": false,
+        "cities": ["Lahore"],
+        "zoneManager": "Akram",
+        "id": 1
+      },
+      {
+        "name": "Karachi Zone 1",
+        "active": true,
+        "cities": ["Karachi"],
+        "zoneManager": "Sana",
+        "id": 2
+      },
+      {
+        "name": "Islamabad Zone 1",
+        "active": true,
+        "cities": ["Islamabad" , "Lahore" , "Karachi"],
+        "zoneManager": "Zain",
+        "id": 3
+      },
+      // ... (other zone objects)
+    ],
+    shopCategories: [
+      {
+        "name": "Furniture",
+        "id": 16,
+        "edible": false
+      },
+      {
+        "name": "Electronics",
+        "id": 17,
+        "edible": false
+      },
+      {
+        "name": "Clothing",
+        "id": 18,
+        "edible": false
+      },
+      // ... (other shop category objects)
+    ],
+    shopTypes: [
+      {
+        "name": "Furniture",
+        "id": 12
+      },
+      {
+        "name": "Electronics",
+        "id": 13
+      },
+      {
+        "name": "Clothing",
+        "id": 14
+      },
+      // ... (other shop type objects)
+    ]
+  };
+
+  res.json(data);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
