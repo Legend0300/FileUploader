@@ -3,7 +3,8 @@ const fileUpload = require('express-fileupload');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
-const { v4: uuidv4 } = require('uuid');
+const cron = require("node-cron");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -202,6 +203,46 @@ app.get("/testdata", (req, res) => {
   };
 
   res.json(data);
+});
+
+
+const users = [
+  { name: "jonathan", billpaid: true, billamount: 1000 },
+  { name: "joseph", billpaid: false, billamount: 2000 },
+  { name: "jotaro", billpaid: true, billamount: 3000 },
+];
+
+app.get("/testdata2", (req, res) => {
+  res.json(users);
+});
+
+app.post("/testdata2", (req, res) => {
+  const user = req.body;
+  user.id = uuidv4();
+  users.push(user);
+  res.json(user);
+});
+
+app.put("/setBillPaid", (req, res) => {
+  // Set billpaid to true for all users
+  users.forEach((user) => {
+    user.billpaid = true;
+  });
+  res.json({ message: "Bill paid set to true for all users" });
+});
+
+// Schedule a cron job to set billpaid to false after 15 seconds
+cron.schedule("*/15 * * * * *", () => {
+  console.log("Setting billpaid to false for all users after 15 seconds");
+  users.forEach((user) => {
+    user.billpaid = false;
+  });
+});
+
+// Schedule a cron job to set all users to null after 1 minute
+cron.schedule("*/30 * * * * *", () => {
+  console.log("Setting all users to null after 1 minute");
+  users.length = 0; // This will clear the users array
 });
 
 app.listen(PORT, () => {

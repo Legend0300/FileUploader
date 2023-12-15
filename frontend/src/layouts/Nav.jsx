@@ -36,6 +36,12 @@ export default function RootLayout() {
           >
             Transactions
           </NavLink>
+          <NavLink
+            to="allotment"
+            className="block text-blue-300 hover:text-white transition duration-300"
+          >
+            Allotments
+          </NavLink>
           <hr className="border-t border-gray-600 my-4" />
           <h2 className="text-lg">Vouchers</h2>
           <NavLink
