@@ -18,7 +18,7 @@ export default function RootLayout() {
             to="/login"
             className="block text-blue-300 hover:text-white transition duration-300 mt-2"
           >
-            Login
+            Logout
           </NavLink>
           <hr className="border-t border-gray-600 my-4" />
           <h2 className="text-lg">Basic Setup</h2>

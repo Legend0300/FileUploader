@@ -232,7 +232,7 @@ app.put("/setBillPaid", (req, res) => {
 });
 
 // Schedule a cron job to set billpaid to false after 15 seconds
-cron.schedule("*/15 * * * * *", () => {
+cron.schedule("*/10 * * * * *", () => {
   console.log("Setting billpaid to false for all users after 15 seconds");
   users.forEach((user) => {
     user.billpaid = false;
@@ -240,7 +240,7 @@ cron.schedule("*/15 * * * * *", () => {
 });
 
 // Schedule a cron job to set all users to null after 1 minute
-cron.schedule("*/30 * * * * *", () => {
+cron.schedule("*/15 * * * * *", () => {
   console.log("Setting all users to null after 1 minute");
   users.length = 0; // This will clear the users array
 });
